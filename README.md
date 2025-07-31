@@ -1,61 +1,191 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Prerequisites
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Before you begin, ensure you have the following installed on your system:
 
-## About Laravel
+- **PHP** >= 8.1
+- **Composer** (latest version)
+- **Node.js** >= 16.x
+- **npm** or **yarn**
+- **MySQL** or **PostgreSQL**
+- **Git**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. Clone the Repository
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```bash
+git clone [https://github.com/your-username/your-project-name.git](https://github.com/devAaron19/trs.git)
+cd trs
+```
 
-## Learning Laravel
+### 2. Install PHP Dependencies
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+composer install
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 3. Install JavaScript Dependencies
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+npm install
+```
 
-## Laravel Sponsors
+### 4. Environment Setup
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Copy the environment file and configure your settings:
 
-### Premium Partners
+```bash
+cp .env.example .env
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Generate application key:
 
-## Contributing
+```bash
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 5. Database Configuration
 
-## Code of Conduct
+Update your `.env` file with your database credentials:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-## Security Vulnerabilities
+### 6. Database Migration
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Run the database migrations:
 
-## License
+```bash
+php artisan migrate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Optionally, seed the database with sample data:
+
+```bash
+php artisan db:seed
+```
+
+## Development
+
+### Running the Application
+
+Start the Laravel development server:
+
+```bash
+php artisan serve
+```
+
+In a separate terminal, compile and watch for Vue.js changes:
+
+```bash
+npm run dev
+```
+
+Your application will be available at `http://localhost:8000`
+
+### Building for Production
+
+To build assets for production:
+
+```bash
+npm run build
+```
+
+## Additional Artisan Commands
+
+### Cache Management
+
+Clear application cache:
+```bash
+php artisan cache:clear
+```
+
+Clear configuration cache:
+```bash
+php artisan config:clear
+```
+
+Clear route cache:
+```bash
+php artisan route:clear
+```
+
+Clear view cache:
+```bash
+php artisan view:clear
+```
+
+### Database Commands
+
+Reset and re-run all migrations:
+```bash
+php artisan migrate:refresh
+```
+
+Reset database and run seeders:
+```bash
+php artisan migrate:refresh --seed
+```
+
+Create a new migration:
+```bash
+php artisan make:migration create_table_name
+```
+
+Create a new model:
+```bash
+php artisan make:model ModelName -m
+```
+
+## Project Structure
+
+```
+├── app/                    # Laravel application code
+├── bootstrap/              # Application bootstrap files
+├── config/                 # Configuration files
+├── database/               # Database migrations and seeders
+├── public/                 # Public assets and entry point
+├── resources/
+│   ├── js/                 # Vue.js components and JavaScript
+│   ├── css/                # Stylesheets
+│   └── views/              # Blade templates
+├── routes/                 # Application routes
+├── storage/                # Application storage
+├── tests/                  # Test files
+├── vendor/                 # Composer dependencies
+├── node_modules/           # NPM dependencies
+├── .env                    # Environment variables
+├── composer.json           # PHP dependencies
+├── package.json            # JavaScript dependencies
+└── vite.config.js          # Vite configuration
+```
+
+## Common Issues and Solutions
+
+### Permission Issues
+
+If you encounter permission issues with storage or cache directories:
+
+```bash
+sudo chown -R $USER:www-data storage
+sudo chown -R $USER:www-data bootstrap/cache
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
+```
+
+### Node.js Version Issues
+
+If you encounter Node.js compatibility issues, consider using Node Version Manager (nvm):
+
+```bash
+nvm install 23
+nvm use 23
+```
+
+**Happy coding! 🚀**
